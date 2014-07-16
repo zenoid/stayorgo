@@ -1,0 +1,45 @@
+
+
+
+/*                      LOW PERFORMANCE DEVICES
+------------------------------------------------------------------------- */
+
+.low-performance {
+
+  .bar {
+    background-color: #FFF;
+  }
+
+  circle {
+    opacity: 1;
+  }
+
+  text {
+    text-rendering: optimizeSpeed;
+  }
+}
+
+
+
+/*                      TABLET
+------------------------------------------------------------------------- */
+
+@media only screen and (max-height: 700px) {
+
+h1 {
+  font-size: 3em;
+}
+
+#setup-screen-params {
+
+  .screen-content {
+    top: 4em;
+    height: 14em;
+  }
+
+  h2 {
+    margin: 0 0 0.5em 0;
+  }
+}
+
+}

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Should I Stay or Should I Go?</title>
+  <meta name="description" content="An interactive visualization to compare countries and find your place in the world">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
+
+  <meta property="og:site_name" content="Ghost in the Data">
+  <meta property="fb:app_id" content="1514341398777868">
+  <meta property="og:title" content="Should I Stay or Should I Go?">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="http://ghostinthedata.com/stayorgo/favicon-196x196.png">
+  <meta property="og:url" content="http://ghostinthedata.com/stayorgo/">
+  <meta property="og:description" content="An interactive visualization to compare countries and find your place in the world">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Should I Stay or Should I Go?">
+  <meta name="twitter:description" content="An interactive visualization to compare countries and find your place in the world">
+  <meta name="twitter:image" content="http://ghostinthedata.com/stayorgo/favicon-196x196.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#b7df5b">
+  <meta name="msapplication-TileImage" content="mstile-144x144.png">
+  <link href='http://fonts.googleapis.com/css?family=Francois+One' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="style/style.css">
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-745679-12', 'ghostinthedata.com');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+<body>
+
+  <div id="chart"></div>
+
+  <h2 id="chart-legend"></h2>
+
+  <div id="country-selection" class="bar">
+
+    <div class="block">
+      <input type="text" id="country-new" placeholder="Add a country..." />
+    </div>
+
+    <div id="continents-list-block" class="block">
+      <a id="continents-list-link">Add / Remove a continent</a>
+      <div id="continents-list-container">
+        <ul id="continents-list"></ul>
+      </div>
+    </div>
+
+    <div class="block">
+      <a id="best-countries-link">Show the best countries</a>
+    </div>
+
+  </div>
+
+  <ul id="params-list"></ul>
+
+  <div id="footer" class="bar">
+
+    <div class="block">
+      <p><span class="logo-green">Should I Stay</span> <span class="logo-orange">or Should I Go?</span></p>
+    </div>
+  </div>
+
+  <div id="setup-screens">
+
+    <div id="setup-screen-country" class="screen">
+      <div class="screen-content">
+        <h2>Which country are you living in?</h2>
+        <input type="text" id="country-home" />
+        <button></button>
+      </div>
+    </div>
+
+    <div id="setup-screen-params" class="screen">
+      <div class="screen-content">
+        <h2>How do you want your country to be?</h2>
+        <ul id="setup-params-list"></ul>
+        <p class="suggestion">Pick at least 3</p>
+        <button></button>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="title">
+    <h1><span class="logo-firstline">Should I Stay</span><br/>or Should I Go?</h1>
+  </div>
+
+  <div class="gitd-widgets">
+
+    <div class="gitd-widget-item gitd-widget-share">
+      <div class="gitd-widget-container">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://ghostinthedata.com/stayorgo/" target="_blank" class="share-button share-button-fb"></a>
+        <a href="https://twitter.com/intent/tweet?text=Should%20I%20Stay%20or%20Should%20I%20Go%3F%20Compare%20countries%20and%20find%20your%20place%20in%20the%20world&url=http://ghostinthedata.com/stayorgo&via=ghostinthedata" target="_blank" class="share-button share-button-twitter"></a>
+      </div>
+    </div>
+
+    <div class="gitd-widget-item gitd-widget-data">
+      <div class="gitd-widget-container">
+        <div class="gitd-widget-panel">
+          <p>DATA SOURCES</p>
+          <ul>
+            <li><a href="http://hdr.undp.org" target="_blank">United Nations - Human Development Report 2013</a></li>
+            <li><a href="https://www.cia.gov/library/publications/the-world-factbook" target="_blank">CIA - The World Factbook 2013</a></li>
+            <li><a href="http://openweathermap.org/" target="_blank">Open Weather Map</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <a href="http://github.com" target="blank" class="gitd-widget-item gitd-widget-github"></a>
+
+    <a href="http://ghostinthedata.com" target="blank" class="gitd-widget-item gitd-widget-website"></a>
+
+  </div>
+
+  <script src="js/scripts.js"></script>
+
+</body>
+</html>
