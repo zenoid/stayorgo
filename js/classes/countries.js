@@ -6,12 +6,12 @@ window.countryComparison = window.countryComparison || {};
 
   app.countries = (function() {
 
-    var sourceData, selectedCountries, countryInput, selectableCountries, homeCountry, continentsList, continentsListHeight;
+    var sourceData, selectedCountries, countryInput, homeCountry, continentsList, continentsListHeight;
 
 
     // ----------------- Managing Selection -----------------
 
-    function addCountry( c ) {
+    function changeCountry( c ) {
       if ( c ) {
         var id = '';
         sourceData.forEach(function( d, i ) {
@@ -20,9 +20,9 @@ window.countryComparison = window.countryComparison || {};
             return;
           }
         });
+        homeCountry = id;
         selectedCountries.push( id );
         app.chart.update();
-        setAvailableCountries();
       }
       countryInput.val( '' );
     }
@@ -34,7 +34,6 @@ window.countryComparison = window.countryComparison || {};
         }
       });
       app.chart.update();
-      setAvailableCountries();
     }
 
     function removeContinent( cont ) {
@@ -44,17 +43,6 @@ window.countryComparison = window.countryComparison || {};
         }
       });
       app.chart.update();
-      setAvailableCountries();
-    }
-
-    function setAvailableCountries() {
-      selectableCountries = [];
-      sourceData.forEach(function( d, i ) {
-        if ( $.inArray( d.id, selectedCountries ) === -1 ) {
-          selectableCountries.push( d.name );
-        }
-      });
-      countryInput.autocomplete( 'setOptions', { lookup: selectableCountries });
     }
 
 
@@ -64,17 +52,23 @@ window.countryComparison = window.countryComparison || {};
 
       countryInput = $( '#country-new' );
 
+      var selectableCountries = [];
+      sourceData.forEach(function( d, i ) {
+        selectableCountries.push( d.name );
+      });
+
       countryInput.autocomplete({
 
+        lookup: selectableCountries,
         autoSelectFirst: true,
         triggerSelectOnValidInput: true,
 
         onSelect: function( suggestion ) {
-          addCountry( suggestion.value );
+          changeCountry( suggestion.value );
         },
 
         onInvalidateSelection: function() {
-          addCountry( '' );
+          changeCountry( '' );
         },
 
       });
@@ -83,7 +77,6 @@ window.countryComparison = window.countryComparison || {};
         $( this ).val( '' );
       });
 
-      setAvailableCountries();
     }
 
     function createContinentsList() {
@@ -222,7 +215,6 @@ window.countryComparison = window.countryComparison || {};
         }
 
         app.chart.update( msg );
-        setAvailableCountries();
       });
     }
 

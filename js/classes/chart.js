@@ -160,6 +160,7 @@ window.countryComparison = window.countryComparison || {};
       createCircles();
 
       circles.data( activeNodes, function( d ) { return d.id; })
+        .attr( 'class', function( d ) { return ( d.id === app.countries.getHomeCountry() )? 'home-country-circle' : ''; })
         .each(function( d, i ) {
 
           d3.select( this ).select( 'circle' )

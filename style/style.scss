@@ -494,6 +494,7 @@ svg {
     @include disableSelect;
     pointer-events: none;
     text-rendering: geometricPrecision;
+    @include transition(fill, 0.3s);
   }
 
   .country-id-text {
