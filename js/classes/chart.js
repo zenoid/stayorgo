@@ -38,8 +38,6 @@ window.countryComparison = window.countryComparison || {};
         var node = {
           id: d.id,
           name: d.name,
-          x: center.x,
-          y: center.y
         };
         nodes.push( node );
       });
@@ -122,10 +120,13 @@ window.countryComparison = window.countryComparison || {};
         .attr( 'class', function( d ) { return ( d.id === app.countries.getHomeCountry() )? 'home-country-circle' : ''; })
         .each(function( d, i ) {
 
+          d.x = center.x;
+          d.y = Math.round( Math.random() * height * 0.2 + height * 0.4 );
+
           d3.select( this ).append( 'circle' )
             .attr( 'r', 0 )
             .attr( 'fill', d3.hsl( 0, 0, 0.5 ) )
-            .transition().duration( 500 )
+            .transition().delay( 500 ).duration( 1000 )
             .attr( 'fill', getColor )
             .attr( 'r', function( d ) { return d.radius; });
 
@@ -135,7 +136,7 @@ window.countryComparison = window.countryComparison || {};
             .attr( 'dy', '10px' )
             .attr( 'transform', 'scale(0)' )
             .attr( 'opacity', 0 )
-            .transition().duration( 500 )
+            .transition().delay( 500 ).duration( 1000 )
             .attr( 'transform', function( d ) { return 'scale(' + d.radius / 100 + ')'; })
             .attr( 'opacity', function( d ) { return ( d.radius < minRadiusForLabel? 1 : 0 ); });
 
@@ -144,7 +145,7 @@ window.countryComparison = window.countryComparison || {};
             .text(function( d ) { return d.name.toUpperCase(); })
             .attr( 'transform', 'scale(0)' )
             .attr( 'opacity', 0 )
-            .transition().duration( 500 )
+            .transition().delay( 500 ).duration( 1000 )
             .attr( 'transform', function( d ) { return 'scale(' + d.radius / 100 + ')'; })
             .attr( 'opacity', function( d ) { return ( d.radius < minRadiusForLabel? 0 : 1 ); });
 
