@@ -105,7 +105,15 @@ window.countryComparison = window.countryComparison || {};
     detectLowPerformanceDevices();
 
     d3.csv( 'data/countries.csv', function( data ) {
+
       app.main.init( data );
+
+      d3.json( 'http://ipinfo.io/geo', function( response ) {
+        if ( response && response.country ) {
+          app.selection.setDefaultCountry( response.country );
+        }
+      });
+
     });
 
   });

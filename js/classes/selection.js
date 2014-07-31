@@ -6,7 +6,7 @@ window.countryComparison = window.countryComparison || {};
 
   app.selection = (function() {
 
-    var _data, selectionScreens, title, countryInput, selectedCountry, validCountry = false, autocompleteOptions = {}, selectedParams = [];
+    var _data, selectionScreens, title, countryInput, goBtnCountry, goBtnParams, selectedCountry, validCountry = false, autocompleteOptions = {}, selectedParams = [];
 
 
     // ----------------- Screens -----------------
@@ -46,10 +46,10 @@ window.countryComparison = window.countryComparison || {};
 
     function setupCountrySelection( _data ) {
 
-      var goBtn = $( '#setup-screen-country button' ),
-        selectableCountries = [];
+      var selectableCountries = [];
 
-      goBtn.on( 'click', selectCountry);
+      goBtnCountry = $( '#setup-screen-country button' );
+      goBtnCountry.on( 'click', selectCountry);
 
       $( window ).bind('keypress', function( e ) {
         if ( e.which === 13 && validCountry ) {
@@ -59,7 +59,7 @@ window.countryComparison = window.countryComparison || {};
 
       countryInput = $( '#country-home' );
 
-      _data.forEach(function( d, i ) {
+      _data.forEach(function( d ) {
         selectableCountries.push( d.name );
       });
 
@@ -71,12 +71,12 @@ window.countryComparison = window.countryComparison || {};
 
         onSelect: function( suggestion ) {
           validCountry = true;
-          goBtn.addClass( 'visible' );
+          goBtnCountry.addClass( 'visible' );
         },
 
         onInvalidateSelection: function() {
           validCountry = false;
-          goBtn.removeClass( 'visible' );
+          goBtnCountry.removeClass( 'visible' );
           countryInput.val( '' );
         }
 
@@ -113,7 +113,7 @@ window.countryComparison = window.countryComparison || {};
         suggestionLbl = $( '#setup-screen-params .suggestion' ),
         list = document.createDocumentFragment(),
         validParams = false,
-        paramsLi, goBtn, param, li;
+        paramsLi, param, li;
 
       for ( param in app.main.paramsList ) {
         li = document.createElement( 'li' );
@@ -147,18 +147,18 @@ window.countryComparison = window.countryComparison || {};
 
         if ( selectedParams.length > 2 ) {
           suggestionLbl.css( 'opacity', 0 );
-          goBtn.addClass( 'visible' );
+          goBtnParams.addClass( 'visible' );
           validParams = true;
         } else {
           suggestionLbl.css( 'opacity', 1 );
-          goBtn.removeClass( 'visible' );
+          goBtnParams.removeClass( 'visible' );
           validParams = false;
         }
 
       });
 
-      goBtn = $( '#setup-screen-params button' );
-      goBtn.on( 'click', selectParams);
+      goBtnParams = $( '#setup-screen-params button' );
+      goBtnParams.on( 'click', selectParams);
 
       $( window ).bind('keypress', function( e ) {
         if ( e.which === 13 && validParams ) {
@@ -224,6 +224,21 @@ window.countryComparison = window.countryComparison || {};
         setupCountrySelection( sourceData );
         countryInput.focus();
         setupResizeListener();
+      },
+
+      setDefaultCountry: function( countryId ) {
+        if ( !countryInput.val() ) {
+          countryId = countryId.toLowerCase();
+          _data.forEach(function( d ) {
+            if ( d.id === countryId ) {
+              countryInput.val( d.name );
+              validCountry = true;
+              goBtnCountry.addClass( 'visible' );
+              countryInput.focus();
+              return;
+            }
+          });
+        }
       },
 
     };

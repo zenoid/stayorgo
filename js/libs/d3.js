@@ -1,5 +1,5 @@
 !function(){
-  var d3 = {version: "3.4.9"}; // semver
+  var d3 = {version: "3.4.10"}; // semver
 d3.max = function(array, f) {
   var i = -1,
       n = array.length,
@@ -471,6 +471,14 @@ d3.dsv = function(delimiter, mimeType) {
 };
 
 d3.csv = d3.dsv(",", "text/csv");
+
+d3.json = function(url, callback) {
+  return d3_xhr(url, "application/json", d3_json, callback);
+};
+
+function d3_json(request) {
+  return JSON.parse(request.responseText);
+}
 
 function d3_vendorSymbol(object, name) {
   if (name in object) return name;
@@ -4438,11 +4446,7 @@ function d3_transitionNode(node, i, id, inherit) {
     }, 0, time);
   }
 }
-  if (typeof define === "function" && define.amd) {
-    define(d3);
-  } else if (typeof module === "object" && module.exports) {
-    module.exports = d3;
-  } else {
-    this.d3 = d3;
-  }
+  if (typeof define === "function" && define.amd) define(d3);
+  else if (typeof module === "object" && module.exports) module.exports = d3;
+  this.d3 = d3;
 }();
