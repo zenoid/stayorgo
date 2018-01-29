@@ -108,7 +108,7 @@ window.countryComparison = window.countryComparison || {};
 
       app.main.init( data );
 
-      d3.json( 'http://ipinfo.io/geo', function( response ) {
+      d3.json( 'https://ipinfo.io/geo', function( response ) {
         if ( response && response.country ) {
           app.selection.setDefaultCountry( response.country );
         }
