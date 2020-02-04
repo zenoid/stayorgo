@@ -90,6 +90,9 @@ window.countryComparison = window.countryComparison || {};
         fontSize,
         tspan = lbl.text( null ).append( 'tspan' );
 
+      // TEMP FIX
+      is_firefox = true;
+
       while ( ( word = words.pop() ) ) {
         line.push( word );
         tspan.text( line.join(' ') );
