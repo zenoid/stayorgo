@@ -3,7 +3,7 @@ Should I Stay or Should I Go?
 
 An interactive visualization to compare countries and find your place in the world.
 
-It's part of the **Ghost in the Data** project: http://ghostinthedata.com/stayorgo/
+It's part of the **Ghost in the Data** project: https://ghostinthedata.com/stayorgo/
 
 ### Data Sources
 
